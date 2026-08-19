@@ -4,7 +4,8 @@ A Framer code component that renders a course catalogue from a live API.
 
 **Live:** https://tricky-walkthroughs-513614.framer.app/
 
-**AI conversation:** [PASTE CLAUDE SHARE LINK HERE]
+**AI conversation:** [`transcript.md`](transcript.md) — Claude Code sessions are stored
+locally and have no shareable chat URL, so the session is exported into the repo instead.
 
 One file, [`CourseGrid.tsx`](CourseGrid.tsx), pasted into Framer as a code component.
 The hero and footer on the live site are Framer layers; everything from the section

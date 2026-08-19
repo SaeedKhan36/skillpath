@@ -11,7 +11,16 @@
     "allowImportingTsExtensions": true,
     "paths": {
       "@component": ["../CourseGrid.tsx"],
-      "framer": ["./src/framer-stub.ts"]
+      "framer": ["./src/framer-stub.ts"],
+
+      // CourseGrid.tsx lives at the repo root, so TypeScript resolves its bare
+      // imports by walking up from *there* and never reaches preview/node_modules.
+      // Vite has its own resolver and is unaffected; these keep `tsc` in step.
+      "react": ["./node_modules/@types/react"],
+      "react/jsx-runtime": ["./node_modules/@types/react/jsx-runtime"],
+      "react/jsx-dev-runtime": ["./node_modules/@types/react/jsx-dev-runtime"],
+      "react-dom": ["./node_modules/@types/react-dom"],
+      "react-dom/client": ["./node_modules/@types/react-dom/client"]
     }
   },
   "include": ["src", "../CourseGrid.tsx"]

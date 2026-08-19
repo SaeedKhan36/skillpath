@@ -56,7 +56,14 @@ on the first retry.
 
 **Currency and price field travel together.** `CURRENCIES` pairs `IN` with `pricePaise`
 and `US` with `priceUsdCents`, so the symbol and the field it reads cannot drift apart.
-Both are minor units, so both divide by 100. `1050` paise renders as ₹10.50, not ₹10.5.
+Both are minor units, so both divide by 100 — `199900` paise is ₹1,999.00, not ₹1,99,900.
+
+**Both currencies always show two decimals.** `minimumFractionDigits` and
+`maximumFractionDigits` are both pinned to 2, so `199900` paise reads ₹1,999.00 and
+`1050` reads ₹10.50. Pinning both ends stops `Intl` dropping the trailing zero on a
+whole amount, which would otherwise render ₹10.50 and ₹1,999 side by side in the same
+column. The trade is that Indian pricing is more often written ₹1,999 than ₹1,999.00;
+consistency across the grid won.
 
 **Failures are typed.** `offline`, `timeout`, and `server` each get their own copy. A
 plane-mode failure and a 500 are not the same problem and should not read the same.
